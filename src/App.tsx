@@ -1,19 +1,21 @@
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+import { Nav, Navbar, Container } from 'react-bootstrap';
 import {Home, SingleCat} from './pages';
 
 
 const App = () => {
   return (
     <BrowserRouter>
-      <header>
-        <Link to="/">
-          Home
-        </Link>
-
-        <Link to="/single-cat">
-          Single Cat
-        </Link>
-      </header>
+      <Navbar expand="lg" className="bg-body-tertiary">
+        <Container>
+          <Navbar.Brand href="/">Cat Browser</Navbar.Brand>
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link href="/">Home</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
       <main>
         <Routes>
           <Route path="/" element={<Home />}/>

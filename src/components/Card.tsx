@@ -1,6 +1,18 @@
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
 import { CardType } from '../types';
+
+
+const CardContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px;
+`;
 
 const Card = ({
   imgUrl,
@@ -27,12 +39,12 @@ const Card = ({
   }
 
   return (
-    <div>
+    <CardContainer>
         <img src={imgUrl} width="200" height="200"></img>
         <Button variant="primary" size="lg" onClick={() => {viewDetails(id)}}>
             View Details
         </Button>
-    </div>
+    </CardContainer>
   )
 }
 
