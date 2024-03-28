@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react';
-import {Dropdown, Button} from 'react-bootstrap';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Dropdown } from 'react-bootstrap';
+import { useLocation } from 'react-router-dom';
+import { Card } from '../components';
 
 import {cats} from '../constants/cats';
+import { Photo } from '../types';
 
 const Home = () => {
 
-  const [photos, setPhotos] = useState([]);
+  const [photos, setPhotos] = useState<Photo[]>([]);
   const [selectedBreed, setSelectedBreed] = useState('');
-  const navigate = useNavigate();
 
   const location = useLocation();
 
@@ -22,7 +23,7 @@ const Home = () => {
     }
   }, [location]);
 
-  const getPhotos = (eventKey) => {
+  const getPhotos = (eventKey: string) => {
     fetch(`https://api.thecatapi.com/v1/images/search?page=1&limit=10&breed_id=${eventKey}`, {
         mode:  'cors', 
         method: 'GET',
@@ -39,24 +40,6 @@ const Home = () => {
       .catch(error => console.error(error));
   }
 
-
-  const viewDetails = (id) => {
-    fetch(`https://api.thecatapi.com/v1/images/${id}`, {
-        mode:  'cors', 
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-      .then(response => response.json())
-      .then(data => {
-        
-        navigate('/single-cat', { state: { selectedBreed, catData: data } });
-        /*console.log('data', data)
-        setPhotos(data);*/
-      })
-      .catch(error => console.error(error));
-  }
   return (
     <>
       <Dropdown>
@@ -76,12 +59,7 @@ const Home = () => {
       <>
           {
             photos.map(p => 
-              <div >
-                <img src={p.url} width="200" height="200"></img>
-                <Button variant="primary" size="lg" onClick={() => {viewDetails(p.id)}}>
-                  View Details
-                </Button>
-              </div>
+              <Card imgUrl={p.url} id={p.id} selectedBreed={selectedBreed}></Card>
             )
           }
       </>
