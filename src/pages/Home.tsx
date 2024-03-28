@@ -1,11 +1,26 @@
 import { useState, useEffect } from 'react';
-import Dropdown from 'react-bootstrap/Dropdown';
+import {Dropdown, Button} from 'react-bootstrap';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import {cats} from '../constants/cats';
 
 const Home = () => {
 
   const [photos, setPhotos] = useState([]);
+  const [selectedBreed, setSelectedBreed] = useState('');
+  const navigate = useNavigate();
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if(location.state) {
+      
+      const { state } = location;
+      console.log('state home', state)
+
+      getPhotos(state.breed_id)
+    }
+  }, [location]);
 
   const getPhotos = (eventKey) => {
     fetch(`https://api.thecatapi.com/v1/images/search?page=1&limit=10&breed_id=${eventKey}`, {
@@ -18,6 +33,7 @@ const Home = () => {
       .then(response => response.json())
       .then(data => {
         console.log('data', data)
+        setSelectedBreed(eventKey);
         setPhotos(data);
       })
       .catch(error => console.error(error));
@@ -34,8 +50,10 @@ const Home = () => {
       })
       .then(response => response.json())
       .then(data => {
-        console.log('data', data)
-        setPhotos(data);
+        
+        navigate('/single-cat', { state: { selectedBreed, catData: data } });
+        /*console.log('data', data)
+        setPhotos(data);*/
       })
       .catch(error => console.error(error));
   }
@@ -58,8 +76,11 @@ const Home = () => {
       <>
           {
             photos.map(p => 
-              <div onClick={() => {viewDetails(p.id)}}>
+              <div >
                 <img src={p.url} width="200" height="200"></img>
+                <Button variant="primary" size="lg" onClick={() => {viewDetails(p.id)}}>
+                  View Details
+                </Button>
               </div>
             )
           }
