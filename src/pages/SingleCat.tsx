@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import {Button} from 'react-bootstrap';
+import {Button, Container} from 'react-bootstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { CatDetails, Breed } from '../types';
 
@@ -9,6 +9,24 @@ import { CatDetails, Breed } from '../types';
 const SingleCatContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  padding: 10px;
+`;
+
+const DetailsContainer = styled.div`
+  width: 800px;
+`;
+
+const StyledContainer = styled(Container)`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: 100%;
+
 `;
 
 const SingleCat = () => {
@@ -39,16 +57,21 @@ const SingleCat = () => {
     const { description, name, origin, temperament } = breed;
 
     return (
-      <SingleCatContainer>
-        <Button variant="primary" size="lg" onClick={() => {returnHome()}}>
-            Back
-        </Button>
-        <img src={url}></img>
-        <p>{name}</p>
-        <p>{origin}</p>
-        <p>{temperament}</p>
-        <p>{description}</p>
-      </SingleCatContainer> 
+      <StyledContainer>
+        <SingleCatContainer>
+          <img src={url} width="800" height="600"></img>
+          <DetailsContainer>
+            <h1>{name}</h1>
+            <h2>Origin: {origin}</h2>
+            <h4>{temperament}</h4>
+            <span>{description}</span>
+          </DetailsContainer>
+          <Button variant="primary" size="lg" onClick={() => {returnHome()}}>
+              Back
+          </Button>  
+        </SingleCatContainer> 
+      </StyledContainer>
+      
     )
   }
 
