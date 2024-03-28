@@ -42,7 +42,12 @@ const Card = ({
   return (
     <CardContainer>
         <img src={imgUrl} alt={alt} width="200" height="200"></img>
-        <Button variant="primary" size="lg" onClick={() => {viewDetails(id)}}>
+        <Button 
+          variant="primary" 
+          size="lg" 
+          onClick={() => {viewDetails(id)}}
+          aria-label={`View Details of ${alt}`}
+        >
             View Details
         </Button>
     </CardContainer>

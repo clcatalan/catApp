@@ -67,7 +67,12 @@ const SingleCat = () => {
             <h4>{temperament}</h4>
             <span>{description}</span>
           </DetailsContainer>
-          <Button variant="primary" size="lg" onClick={() => {returnHome()}}>
+          <Button 
+            variant="primary" 
+            size="lg" 
+            onClick={() => {returnHome()}}
+            aria-label={`Return to Home Page and load data for ${selectedBreed} cats`}
+          >
               Back
           </Button>  
         </SingleCatContainer> 
