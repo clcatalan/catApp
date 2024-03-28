@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import {Button} from 'react-bootstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { CatDetails } from '../types';
+import { CatDetails, Breed } from '../types';
 
 
 
@@ -15,31 +15,46 @@ const SingleCat = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const [catData, setCatData] = useState<CatDetails>({} as CatDetails);
+  const [catDetails, setCatDetails] = useState<CatDetails>({} as CatDetails);
 
 
   useEffect(() => {
     console.log('location', location)
     const { state } = location;
     console.log('state', state)
-    setCatData(state);
+    setCatDetails(state);
 
   }, [location]);
 
   const returnHome = () => {
-    console.log('catData', catData)
-    navigate('/', { state: { breed_id: catData.selectedBreed } });
+    console.log('catDetails', catDetails)
+    navigate('/', { state: { breed_id: catDetails.selectedBreed } });
   }
 
-  return (
-    <SingleCatContainer>
-      <Button variant="primary" size="lg" onClick={() => {returnHome()}}>
-          Back
-      </Button>
-    </SingleCatContainer>
-    
-    
-  )
+  if(catDetails.catData) {
+    const { catData: { url, breeds }, selectedBreed } = catDetails;
+
+    const breed: Breed = breeds.find(b => b.id === selectedBreed) || {} as Breed;
+
+    const { description, name, origin, temperament } = breed;
+
+    return (
+      <SingleCatContainer>
+        <Button variant="primary" size="lg" onClick={() => {returnHome()}}>
+            Back
+        </Button>
+        <img src={url}></img>
+        <p>{name}</p>
+        <p>{origin}</p>
+        <p>{temperament}</p>
+        <p>{description}</p>
+      </SingleCatContainer> 
+    )
+  }
+
+  return <></>
+
+  
 }
 
 export default SingleCat
