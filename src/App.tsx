@@ -1,4 +1,4 @@
-import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Nav, Navbar, Container } from 'react-bootstrap';
 import {Home, SingleCat} from './pages';
 

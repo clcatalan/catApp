@@ -12,7 +12,7 @@ const SingleCatContainer = styled.div`
   justify-content: center;
   align-items: center;
   border: 1px solid black;
-  padding: 10px;
+  padding: 20px;
 `;
 
 const DetailsContainer = styled.div`
@@ -26,6 +26,7 @@ const StyledContainer = styled(Container)`
   align-items: center;
   height: auto;
   width: 100%;
+  padding: 40px;
 
 `;
 
