@@ -1,11 +1,6 @@
-import React from 'react'
-import styled from 'styled-components';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import {Home, SingleCat} from './pages';
 
-const Title = styled.h1`
-  color: blue;
-`;
 
 const App = () => {
   return (
