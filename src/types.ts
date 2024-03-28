@@ -7,6 +7,7 @@ export interface CardType {
     imgUrl: string,
     id: string,
     selectedBreed: string,
+    alt: string,
     
 }
 

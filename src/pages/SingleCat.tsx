@@ -60,7 +60,7 @@ const SingleCat = () => {
     return (
       <StyledContainer>
         <SingleCatContainer>
-          <img src={url} width="800" height="600"></img>
+          <img src={url} alt={`${name}: ${description}`} width="800" height="600"></img>
           <DetailsContainer>
             <h1>{name}</h1>
             <h2>Origin: {origin}</h2>

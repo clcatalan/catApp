@@ -17,7 +17,8 @@ const CardContainer = styled.div`
 const Card = ({
   imgUrl,
   id,
-  selectedBreed
+  selectedBreed,
+  alt,
 }: CardType) => {
 
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ const Card = ({
 
   return (
     <CardContainer>
-        <img src={imgUrl} width="200" height="200"></img>
+        <img src={imgUrl} alt={alt} width="200" height="200"></img>
         <Button variant="primary" size="lg" onClick={() => {viewDetails(id)}}>
             View Details
         </Button>

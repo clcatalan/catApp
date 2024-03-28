@@ -97,6 +97,7 @@ const Home = () => {
       });
   }
 
+  console.log('photos', photos)
   return (
     <StyledContainer>
       <Dropdown>
@@ -121,8 +122,14 @@ const Home = () => {
       }
       <PhotosContainer>
           {
-            photos.map(p => 
-              <Card imgUrl={p.url} id={p.id} key={p.id} selectedBreed={currentSelectedBreed}></Card>
+            photos.map((p, idx) => 
+              <Card 
+                imgUrl={p.url} 
+                id={p.id} 
+                key={p.id} 
+                selectedBreed={currentSelectedBreed}
+                alt={`${currentSelectedBreed} Cat ${idx+1}`}
+              />
             )
           }
       </PhotosContainer>
