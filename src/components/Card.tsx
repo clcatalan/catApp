@@ -1,9 +1,12 @@
-import React from 'react';
-
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { CardType } from '../types';
 
-const Card = ({imgUrl, id, selectedBreed}) => {
+const Card = ({
+  imgUrl,
+  id,
+  selectedBreed
+}: CardType) => {
 
   const navigate = useNavigate();
 
@@ -24,7 +27,7 @@ const Card = ({imgUrl, id, selectedBreed}) => {
   }
 
   return (
-    <div >
+    <div>
         <img src={imgUrl} width="200" height="200"></img>
         <Button variant="primary" size="lg" onClick={() => {viewDetails(id)}}>
             View Details
